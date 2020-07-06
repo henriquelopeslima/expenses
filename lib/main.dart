@@ -17,11 +17,11 @@ class ExpensesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
       theme: ThemeData(
-        // primarySwatch: Colors.amber, rgba(176, 234, 205, 1)
         primarySwatch: Colors.lightGreen,
         accentColor: Colors.lightGreenAccent,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
+            // ignore: deprecated_member_use
             title: TextStyle(
               fontFamily: 'OpenSans',
               fontSize: 18,
@@ -33,6 +33,7 @@ class ExpensesApp extends StatelessWidget {
             )),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
+                // ignore: deprecated_member_use
                 title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 20,
@@ -104,7 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
       actions: <Widget>[
         if (isLandScape)
           IconButton(
-            icon: Icon(_showChart ? Icons.list : Icons.pie_chart),
+            icon: Icon(
+              _showChart ? Icons.list : Icons.show_chart,
+              color: Colors.white,
+            ),
             onPressed: () {
               setState(() {
                 _showChart = !_showChart;
@@ -112,7 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
         IconButton(
-          icon: Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
           onPressed: () => _openTransactionFormModal(context),
         ),
       ],
@@ -144,7 +151,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

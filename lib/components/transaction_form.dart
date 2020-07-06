@@ -45,7 +45,7 @@ class _TransactionFormState extends State<TransactionForm> {
     return Card(
       elevation: 5,
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
         child: Column(
           children: <Widget>[
             TextField(
@@ -64,7 +64,7 @@ class _TransactionFormState extends State<TransactionForm> {
               ),
             ),
             Container(
-              height: 70,
+              height: 50,
               child: Row(
                 children: <Widget>[
                   Expanded(
