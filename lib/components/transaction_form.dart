@@ -40,6 +40,8 @@ class _TransactionFormState extends State<TransactionForm> {
     });
   }
 
+  _showModalBottomSheet() {}
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -47,8 +49,10 @@ class _TransactionFormState extends State<TransactionForm> {
         elevation: 5,
         child: Padding(
           padding: EdgeInsets.only(
-            left: 10, top: 10, right: 10, bottom: 10 + MediaQuery.of(context).viewInsets.bottom
-          ),
+              left: 10,
+              top: 10,
+              right: 10,
+              bottom: 10 + MediaQuery.of(context).viewInsets.bottom),
           child: Column(
             children: <Widget>[
               TextField(

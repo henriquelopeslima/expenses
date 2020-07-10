@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (_) {
         return TransactionForm(_addTransaction);
       },
@@ -95,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    bool isLandScape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -125,29 +126,31 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final availableHeigth = MediaQuery.of(context).size.height -
+    final availableHeigth = mediaQuery.size.height -
         appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+        mediaQuery.padding.top;
 
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            if (_showChart || !isLandScape)
-              Container(
-                height: availableHeigth * (isLandScape ? 0.7 : 0.3),
-                child: Chart(_recentTransactions),
-              ),
-            if (!_showChart || !isLandScape)
-              Container(
-                  height: availableHeigth * 0.7,
-                  child: TransactionList(
-                    _transactions,
-                    _removesTransaction,
-                  )),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              if (_showChart || !isLandScape)
+                Container(
+                  height: availableHeigth * (isLandScape ? 0.8 : 0.3),
+                  child: Chart(_recentTransactions),
+                ),
+              if (!_showChart || !isLandScape)
+                Container(
+                    height: availableHeigth * (isLandScape ? 1 : 0.7),
+                    child: TransactionList(
+                      _transactions,
+                      _removesTransaction,
+                    )),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
